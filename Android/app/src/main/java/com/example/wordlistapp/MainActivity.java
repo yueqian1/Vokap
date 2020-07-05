@@ -1,23 +1,27 @@
 package com.example.wordlistapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.wordlistapp.include.WordList;
+import com.example.wordlistapp.include.WordResources;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 
 import com.example.wordlistapp.ui.main.SectionsPagerAdapter;
 
+import java.io.IOException;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
-    String wordList;
+    private List<WordList> wordLists;
+    private boolean firstStart = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +34,28 @@ public class MainActivity extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
         FloatingActionButton fab = findViewById(R.id.fab);
 
+        if (firstStart) {
+            try {
+                WordResources.init(getResources().getAssets());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            WordResources.prepare();
+        }
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                startActivity(new Intent(MainActivity.this, WordListingActivity.class));
             }
         });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 }

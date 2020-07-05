@@ -19,6 +19,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".WordListingActivity">
+        </activity>
+
+        <activity
+            android:name=".WordTestActivity">
+        </activity>
+
     </application>
 
 </manifest>
