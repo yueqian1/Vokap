@@ -1,4 +1,4 @@
-package com.example.wordlistapp.ui.main;
+package com.example.wordlistapp;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,25 +9,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.wordlistapp.R;
 import com.example.wordlistapp.include.Word;
 
 import java.util.List;
 
 public class WordListingAdapter extends RecyclerView.Adapter<WordListingAdapter.WordListingViewHolder> {
 
-    private Context context;
     private List<Word> wordList;
 
-    public WordListingAdapter(Context context, List<Word> wordList) {
-        this.context = context;
+    public WordListingAdapter(List<Word> wordList) {
         this.wordList = wordList;
     }
 
     @NonNull
     @Override
     public WordListingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.single_word, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_word, parent, false);
 
         return new WordListingViewHolder(view);
     }
@@ -35,7 +32,7 @@ public class WordListingAdapter extends RecyclerView.Adapter<WordListingAdapter.
     @Override
     public void onBindViewHolder(@NonNull WordListingViewHolder holder, int position) {
         Word word = wordList.get(position);
-        holder.textView.setText(word.getWord());
+        holder.textView.setText(word.getString());
     }
 
     public static class WordListingViewHolder extends RecyclerView.ViewHolder {

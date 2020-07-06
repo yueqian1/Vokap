@@ -1,8 +1,7 @@
-package com.example.wordlistapp.ui.main;
+package com.example.wordlistapp;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,23 +12,15 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.wordlistapp.R;
-import com.example.wordlistapp.WordListingActivity;
 import com.example.wordlistapp.include.WordList;
 import com.example.wordlistapp.include.WordResources;
 
 public class WordCardAdapter extends RecyclerView.Adapter<WordCardAdapter.WordCardViewHolder> {
 
-    private Context context;
-
-    public WordCardAdapter(Context context) {
-        this.context = context;
-    }
-
     @NonNull
     @Override
     public WordCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.wordcard, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.wordcard, parent, false);
 
         return new WordCardViewHolder(view);
     }
@@ -38,9 +29,9 @@ public class WordCardAdapter extends RecyclerView.Adapter<WordCardAdapter.WordCa
     public void onBindViewHolder(@NonNull WordCardViewHolder holder, int position) {
         WordList wordList = WordResources.getWordList(position);
 
-        holder.progressBar.setMax(wordList.getSize());
-        holder.progressBar.setProgress((int) (Math.random() * wordList.getSize()));
-        holder.textView.setText(wordList.getName());
+        holder.progressBar.setMax(wordList.size());
+        holder.progressBar.setProgress((int) (Math.random() * wordList.size()));
+        holder.textView.setText(wordList.getListName());
         holder.setWordListIndex(position);
     }
 

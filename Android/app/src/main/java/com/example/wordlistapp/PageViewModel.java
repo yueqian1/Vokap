@@ -1,4 +1,4 @@
-package com.example.wordlistapp.ui.main;
+package com.example.wordlistapp;
 
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;

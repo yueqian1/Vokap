@@ -6,25 +6,26 @@ import java.util.List;
 public class WordList {
 
     private int index;
-    private int[] score;
+    private boolean[] wordLearned;
     private List<Word> wordList;
-    private String name;
+    private String listName;
 
     public WordList(List<Word> words, String name) {
-        score = new int[words.size()];
+        wordLearned = new boolean[words.size()];
 
-        Arrays.fill(score, 5);
+        // 初始设置所有单词为未掌握
+        Arrays.fill(wordLearned, false);
 
         this.wordList = words;
-        this.name = name;
+        this.listName = name;
     }
 
-    public String getName() {
-        return name;
+    public String getListName() {
+        return listName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setListName(String name) {
+        this.listName = name;
     }
 
     public List<Word> getWordList() {
@@ -39,32 +40,20 @@ public class WordList {
         this.index = index;
     }
 
-    public int getSize() {
+    public int size() {
         return wordList.size();
     }
 
     public int getProgress() {
         int count = 0;
 
-        for (int value : score) {
-            if (value <= 0) {
+        for (boolean i : wordLearned) {
+            if (i) {
                 count++;
             }
         }
 
-        return  count / wordList.size();
-    }
-
-    public boolean learned(int index) {
-        return score[index] <= 0;
-    }
-
-    public void successOn(int index) {
-        score[index] -= 2;
-    }
-
-    public void failOn(int index) {
-        score[index] += 1;
+        return count / wordList.size();
     }
 
     public Word getWord(int index) {

@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">WordListApp</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="tab_text_3">TabTest</string>
+    <string name="app_name">Vokap</string>
+    <string name="tab_text_wordcards">单词清单</string>
+    <string name="tab_text_newwords">生词本</string>
+    <string name="tab_text_myplan">我的计划</string>
+    <string name="tab_text_options">个人信息</string>
 </resources>

@@ -1,26 +1,33 @@
 package com.example.wordlistapp;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Color;
+import android.icu.text.CaseMap;
+import android.os.Build;
 import android.os.Bundle;
 
+import com.example.wordlistapp.include.BarColorManager;
+import com.example.wordlistapp.include.FontManager;
 import com.example.wordlistapp.include.WordList;
 import com.example.wordlistapp.include.WordResources;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
-
-import com.example.wordlistapp.ui.main.SectionsPagerAdapter;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private List<WordList> wordLists;
+    // TODO: 这个firstStart用SharedPreference存储
     private boolean firstStart = true;
 
     @Override
@@ -36,7 +43,9 @@ public class MainActivity extends AppCompatActivity {
 
         if (firstStart) {
             try {
-                WordResources.init(getResources().getAssets());
+                AssetManager manager = getResources().getAssets();
+                WordResources.init(manager);
+                FontManager.init(manager);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -44,14 +53,19 @@ public class MainActivity extends AppCompatActivity {
             WordResources.prepare();
         }
 
+        setBarColor();
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
                 startActivity(new Intent(MainActivity.this, WordListingActivity.class));
             }
         });
+    }
+
+    private void setBarColor() {
+        //设置导航栏为透明色
+        BarColorManager.setNavigationBarColor(getWindow(), Color.TRANSPARENT);
     }
 
     @Override

@@ -9,7 +9,7 @@ public class Word {
         this.affilix = affilix;
     }
 
-    public String getWord() {
+    public String getString() {
         return word;
     }
 

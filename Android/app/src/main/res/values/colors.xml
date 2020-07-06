@@ -3,4 +3,8 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="wordTestChoiceDefault">#C3FFFFFF</color>
+    <color name="wordTestChoiceCorrect">#A8F1AA</color>
+    <color name="wordTestChoiceIncorrect">#ED8C8C</color>
+    <color name="wordTestChoiceTextColor">#404040</color>
 </resources>
