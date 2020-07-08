@@ -1,24 +1,46 @@
 package com.example.wordlistapp;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.wordlistapp.include.WordList;
+import com.example.wordlistapp.include.WordResources;
 import com.example.wordlistapp.include.WordTestCase;
+import com.example.wordlistapp.include.WordTestStatus;
 
 import java.util.List;
 
 public class WordTestAdapter extends RecyclerView.Adapter<WordTestAdapter.WordTestViewHolder> {
 
-    private List<WordTestCase> testCases;
+    public static final int MAX_TESTPAGES = 120;
 
-    public WordTestAdapter(List<WordTestCase> testCases) {
+    private List<WordTestCase> testCases;
+    private WordTestActivity activity;
+    private WordList wordList;
+
+    public WordTestAdapter(WordTestActivity activity, List<WordTestCase> testCases, int wordListIndex) {
+        this.activity = activity;
         this.testCases = testCases;
+        this.wordList = WordResources.getWordList(wordListIndex);
+    }
+
+    private WordTestCase getRemainingTestCase() {
+        int index = (int) (Math.random() * testCases.size());
+        return testCases.get(index);
+    }
+
+    private void setChoiceBarInvisible(WordTestViewHolder holder) {
+        for (int i = 0; i < 4; i++) {
+            holder.button[i].setVisibility(View.INVISIBLE);
+        }
     }
 
     @NonNull
@@ -30,24 +52,68 @@ public class WordTestAdapter extends RecyclerView.Adapter<WordTestAdapter.WordTe
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final WordTestViewHolder holder, int position) {
-        final WordTestCase testCase = testCases.get(position);
+    public void onBindViewHolder(@NonNull final WordTestViewHolder holder, final int position) {
+
+        final WordTestCase testCase = getRemainingTestCase();
+
+        activity.addTitle(testCase.getTestedWord());
+
+        holder.choice = -1;
 
         for (int i = 0; i < 4; i++) {
-            holder.button[i].setText(testCases.get(position).getWord(i).getAffilix().getTranslation());
+            holder.button[i].setText(testCase.getWord(i).getAffilix().getTranslation());
             holder.button[i].setBackgroundResource(R.color.wordTestChoiceDefault);
+        }
+
+        if (wordList.getWordLearnedStatus(testCase.getTestCaseIndex())) {
+            return;
+        }
+
+        for (int i = 0; i < 4; i++) {
 
             final int finalI = i;
+
             holder.button[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (testCase.isCorrect(finalI)) {
-                        holder.button[finalI].setBackgroundResource(R.color.wordTestChoiceCorrect);
-                    } else {
-                        holder.button[finalI].setBackgroundResource(R.color.wordTestChoiceIncorrect);
-                        int correctIndex = testCase.getTestedWordIndexInTheCase();
-                        holder.button[correctIndex].setBackgroundResource(R.color.wordTestChoiceCorrect);
+                    if (holder.choice != -1) return;
+
+                    holder.choice = finalI;
+
+                    holder.button[finalI].setBackgroundResource(R.color.wordTestChoiceIncorrect);
+                    holder.button[testCase.getTestedWordIndexInTheCase()]
+                            .setBackgroundResource(R.color.wordTestChoiceCorrect);
+
+                    testCase.toNextStatus(holder.choice);
+
+                    switch (testCase.getStatus()) {
+                        case WordTestStatus.STATUS_PASS:
+                            activity.displayResult("Congratulations! You have remembered this word");
+
+                            wordList.setWordLearnedStatus(testCase.getTestCaseIndex(), true);
+
+                            testCases.remove(testCase);
+                            break;
+                        case WordTestStatus.STATUS_PASSONE:
+                            activity.displayResult("Great. You'll see this word again later");
+                            break;
+                        case WordTestStatus.STATUS_FAILONE:
+                        case WordTestStatus.STATUS_FAILTWO:
+                            activity.displayResult("Oops. You'll see this word again later");
+                            break;
+                        case WordTestStatus.STATUS_FAIL:
+                            activity.displayResult("Sorry you failed. Added to new words");
+
+                            // TODO: 此处对接生词本 NewWords.add(String
+
+                            break;
                     }
+
+                    if (wordList.isFinished()) {
+                        setChoiceBarInvisible(holder);
+                    }
+
+                    activity.updateViews();
                 }
             });
         }
@@ -55,11 +121,12 @@ public class WordTestAdapter extends RecyclerView.Adapter<WordTestAdapter.WordTe
 
     @Override
     public int getItemCount() {
-        return testCases.size();
+        return MAX_TESTPAGES;
     }
 
     public static class WordTestViewHolder extends RecyclerView.ViewHolder {
-        Button[] button = new Button[4];
+        private Button[] button = new Button[4];
+        private int choice = -1;
 
         public WordTestViewHolder(View itemView) {
             super(itemView);

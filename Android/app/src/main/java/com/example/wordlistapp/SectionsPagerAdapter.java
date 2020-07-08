@@ -30,13 +30,15 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-
         switch (position) {
-
-            // TODO: 这里还要放其他三个功能的Fragment
-
             case 0:
                 return new WordCardFragment();
+            case 1:
+                return new NewWordFragment();
+            case 2:
+                return new ScheduleFragment();
+            case 3:
+                return new SettingsFragment();
             default:
                 return new WordCardFragment();
         }

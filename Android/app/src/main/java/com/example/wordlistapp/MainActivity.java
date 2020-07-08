@@ -1,7 +1,9 @@
 package com.example.wordlistapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.icu.text.CaseMap;
 import android.os.Build;
@@ -27,8 +29,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    // TODO: 这个firstStart用SharedPreference存储
     private boolean firstStart = true;
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
         FloatingActionButton fab = findViewById(R.id.fab);
 
+        preferences = getSharedPreferences("AppData", MODE_PRIVATE);
+
         if (firstStart) {
             try {
                 AssetManager manager = getResources().getAssets();
@@ -50,15 +54,23 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         } else {
-            WordResources.prepare();
+            try {
+                WordResources.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         setBarColor();
 
+        WordResources.wordListsToString();
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, WordListingActivity.class));
+                Intent intent = new Intent(MainActivity.this, WordListingActivity.class);
+                intent.putExtra("wordListIndex", (int) (Math.random() * WordResources.getWordListCount()));
+                startActivity(intent);
             }
         });
     }

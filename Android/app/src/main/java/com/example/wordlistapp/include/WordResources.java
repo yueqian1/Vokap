@@ -1,9 +1,13 @@
 package com.example.wordlistapp.include;
 
 import android.content.res.AssetManager;
+import android.os.Environment;
+import android.util.Log;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -20,7 +24,7 @@ public class WordResources {
     private static List<WordList> wordLists = new ArrayList<>();
     private static List<Word> allWords = new ArrayList<>();
     private static Map<String, WordAffilix> wordMap = new HashMap<>();
-    private int wordLearned = 0;
+    private static int wordLearned = 0;
 
     public static WordList getWordList(int index) {
         return wordLists.get(index);
@@ -30,38 +34,74 @@ public class WordResources {
         return wordLists.size();
     }
 
-    public static void init(AssetManager manager) throws IOException {
-        assetManager = manager;
-
+    private static void loadAllWords(boolean shuffle) throws IOException {
         List<Word> words = loadList("CET4.txt");
-        Collections.shuffle(words);
+
+        if (shuffle) {
+            Collections.shuffle(words);
+        }
 
         allWords = words;
+    }
+
+    private static void setupWordMap() {
+        for (Word wrd : allWords) {
+            wordMap.put(wrd.getString(), wrd.getAffilix());
+        }
+    }
+
+    private static void setupWordLists() {
         int count = allWords.size();
-        int wordListSize = 50;
+        int wordListSize = 20;
 
         for (int i = 0; i < count / wordListSize; i++) {
             int r = Math.min((i + 1) * wordListSize, count);
 
             List<Word> list = allWords.subList(i * wordListSize, r);
-            wordLists.add(new WordList(list, "WordList " + i));
-
-            for (Word wrd : list) {
-                wordMap.put(wrd.getString(), wrd.getAffilix());
-            }
+            wordLists.add(new WordList(list, "WordList " + (i + 1)));
         }
     }
 
-    public static WordAffilix searchWord(String word) {
-        return wordMap.get(word);
+    public static void init(AssetManager manager) throws IOException {
+        assetManager = manager;
+
+        loadAllWords(true);
+        setupWordLists();
+        setupWordMap();
     }
 
-    public static void prepare() {
-
+    public static void prepare() throws IOException {
+        loadAllWords(false);
+        loadWordLists();
+        setupWordMap();
     }
 
-    public static void saveData() {
+    private static void loadWordLists() {
+    }
 
+    public static String wordListsToString() {
+        StringBuilder result = new StringBuilder("" + wordLists.size() + "\n");
+
+        for (WordList wordList : wordLists) {
+            result.append(wordList.getListName()).append("|").append(wordList.size()).append("\n");
+
+            for (int i = 0; i < wordList.size(); i++) {
+                String newLine = wordList.getWord(i).getString() + " "
+                        + (wordList.getWordLearnedStatus(i) ? 1 : 0);
+                result.append(newLine);
+            }
+        }
+
+        return result.toString();
+    }
+
+    public static void saveData() throws IOException {
+        FileWriter writer;
+
+        /*try {
+            String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/vokap";
+
+        }*/
     }
 
     public static List<Word> loadList(String filePath) throws IOException {
@@ -85,6 +125,10 @@ public class WordResources {
         is.read(buffer);
 
         return new String(buffer, "utf8");
+    }
+
+    public static WordAffilix searchWord(String word) {
+        return wordMap.get(word);
     }
 
     public static Word getRandomWord() {

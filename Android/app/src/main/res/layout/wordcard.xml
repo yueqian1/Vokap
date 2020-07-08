@@ -11,43 +11,56 @@
         android:layout_width="match_parent"
         android:layout_height="96dp"
         android:layout_marginHorizontal="12dp"
-        android:layout_marginVertical="12dp"
-        android:foreground="@drawable/ripple_bg"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="5dp"
-        app:contentPadding="8dp">
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="2dp"
+        app:cardBackgroundColor="@color/wordCardBackground"
+        app:cardCornerRadius="7dp"
+        app:cardElevation="3dp"
+        app:contentPadding="1dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvWordCardFore"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:foreground="@drawable/ripple_bg"
+            app:cardCornerRadius="6dp"
+            app:contentPadding="7dp">
 
-            <ProgressBar
-                android:id="@+id/pbWordCard"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                android:layout_width="34dp"
-                android:layout_height="80dp"
-                android:layout_marginStart="8dp"
-                android:max="100"
-                android:progress="45"
-                android:rotation="90"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <ProgressBar
+                    android:id="@+id/pbWordCard"
+                    style="@android:style/Widget.Material.Light.ProgressBar.Horizontal"
 
-            <TextView
-                android:id="@+id/tvWordCard"
-                android:layout_width="136dp"
-                android:layout_height="39dp"
-                android:layout_marginStart="18dp"
-                android:gravity="center_vertical"
-                android:text="TextView"
-                android:textSize="18dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/pbWordCard"
-                app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_width="34dp"
+                    android:layout_height="80dp"
+                    android:layout_marginStart="8dp"
+                    android:max="100"
+                    android:progress="45"
+                    android:progressTint="@color/colorPrimaryDark"
+                    android:rotation="90"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/tvWordCard"
+                    android:layout_width="136dp"
+                    android:layout_height="39dp"
+                    android:layout_marginStart="72dp"
+                    android:gravity="center"
+                    android:text="TextView"
+                    android:textSize="18dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/pbWordCard"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.512" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
     </androidx.cardview.widget.CardView>
 
 </FrameLayout>

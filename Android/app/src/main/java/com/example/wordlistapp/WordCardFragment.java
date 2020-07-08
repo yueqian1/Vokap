@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class WordCardFragment extends Fragment {
 
     private RecyclerView recyclerView;
+    private WordCardAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,9 +37,23 @@ public class WordCardFragment extends Fragment {
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(manager);
 
-        WordCardAdapter adapter = new WordCardAdapter();
+        adapter = new WordCardAdapter();
         recyclerView.setAdapter(adapter);
 
         return root;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+
+        recyclerView.setAdapter(adapter);
     }
 }

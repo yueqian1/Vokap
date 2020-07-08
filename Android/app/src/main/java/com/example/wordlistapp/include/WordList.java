@@ -6,15 +6,15 @@ import java.util.List;
 public class WordList {
 
     private int index;
-    private boolean[] wordLearned;
+    private boolean[] isWordLearned;
     private List<Word> wordList;
     private String listName;
 
     public WordList(List<Word> words, String name) {
-        wordLearned = new boolean[words.size()];
+        isWordLearned = new boolean[words.size()];
 
         // 初始设置所有单词为未掌握
-        Arrays.fill(wordLearned, false);
+        Arrays.fill(isWordLearned, false);
 
         this.wordList = words;
         this.listName = name;
@@ -44,20 +44,36 @@ public class WordList {
         return wordList.size();
     }
 
-    public int getProgress() {
+    public int getLearnedProgress() {
         int count = 0;
 
-        for (boolean i : wordLearned) {
+        for (boolean i : isWordLearned) {
             if (i) {
                 count++;
             }
         }
 
-        return count / wordList.size();
+        return count;
+    }
+
+    public boolean isFinished() {
+        return getLearnedProgress() == isWordLearned.length;
+    }
+
+    public void clearLearningHistory() {
+        Arrays.fill(isWordLearned, false);
     }
 
     public Word getWord(int index) {
         return wordList.get(index);
+    }
+
+    public boolean getWordLearnedStatus(int wordIndex) {
+        return isWordLearned[wordIndex];
+    }
+
+    public void setWordLearnedStatus(int wordIndex, boolean isLearned) {
+        isWordLearned[wordIndex] = isLearned;
     }
 
 }

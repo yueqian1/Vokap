@@ -1,5 +1,7 @@
 package com.example.wordlistapp.include;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,6 +12,7 @@ public class WordTestCase {
     private Word testedWord;
     private int testedWordIndexInTheCase;
     private int testCaseIndex;
+    private int testStatus = WordTestStatus.STATUS_START;
 
     public WordTestCase(int wordListIndex, int testedWordIndex) {
         testedWord = WordResources.getWordList(wordListIndex).getWord(testedWordIndex);
@@ -53,11 +56,23 @@ public class WordTestCase {
         Collections.shuffle(words);
 
         for (int i = 0; i < words.size(); i++) {
-            if (words.get(i).equals(testedWord)) {
+            if (words.get(i).getString().equals(testedWord.getString())) {
                 testedWordIndexInTheCase = i;
                 break;
             }
         }
+    }
+
+    public void toNextStatus(boolean isTestPassed) {
+        testStatus = WordTestStatus.getNextStatus(testStatus, isTestPassed);
+    }
+
+    public void toNextStatus(int choice) {
+        toNextStatus(choice == testedWordIndexInTheCase);
+    }
+
+    public int getStatus() {
+        return testStatus;
     }
 
 }

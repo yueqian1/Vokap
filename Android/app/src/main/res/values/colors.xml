@@ -7,4 +7,6 @@
     <color name="wordTestChoiceCorrect">#A8F1AA</color>
     <color name="wordTestChoiceIncorrect">#ED8C8C</color>
     <color name="wordTestChoiceTextColor">#404040</color>
+    <color name="wordNotLearned">#808080</color>
+    <color name="wordCardBackground">#926ACA</color>
 </resources>

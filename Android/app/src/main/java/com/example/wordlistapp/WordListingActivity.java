@@ -5,6 +5,10 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.TypefaceSpan;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -15,19 +19,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wordlistapp.include.BarColorManager;
+import com.example.wordlistapp.include.FontManager;
 import com.example.wordlistapp.include.Word;
 import com.example.wordlistapp.include.WordResources;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
+import java.util.Objects;
 
 public class WordListingActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private List<Word> wordList;
     private Toolbar toolbar;
-    private CollapsingToolbarLayout toolbarLayout;
     private FloatingActionButton fab;
     private int wordListIndex;
 
@@ -42,26 +46,30 @@ public class WordListingActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onPostCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onPostCreate(savedInstanceState, persistentState);
+    public void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
 
-        setTitle("WordList");
-        toolbarLayout.setTitle("WordList");
+        setSupportActionBar(toolbar);
+        String title = WordResources.getWordList(wordListIndex).getListName();
+        toolbar.setTitle(title);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initViews();
     }
 
     private void initViews() {
-        toolbar = findViewById(R.id.tbWordListing);
-        setSupportActionBar(toolbar);
-
-        toolbarLayout = findViewById(R.id.tbLayoutWordListing);
         fab = findViewById(R.id.fabWordListing);
+        toolbar = findViewById(R.id.tbWordListing);
 
         recyclerView = findViewById(R.id.rvWordlisting);
 
         LinearLayoutManager manager = new LinearLayoutManager(WordListingActivity.this);
         recyclerView.setLayoutManager(manager);
 
-        WordListingAdapter adapter = new WordListingAdapter(wordList);
+        WordListingAdapter adapter = new WordListingAdapter(wordListIndex);
         recyclerView.setAdapter(adapter);
 
         setBarColor();
@@ -73,7 +81,6 @@ public class WordListingActivity extends AppCompatActivity {
 
     private void initWordList() {
         wordListIndex = getIntent().getIntExtra("wordListIndex", 0);
-        wordList = WordResources.getWordList(wordListIndex).getWordList();
     }
 
     private void initEvents() {
@@ -86,13 +93,7 @@ public class WordListingActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
-    public void setWordList(List<Word> wordList) {
-        this.wordList = wordList;
-    }
-
-    public List<Word> getWordList() {
-        return wordList;
-    }
 }

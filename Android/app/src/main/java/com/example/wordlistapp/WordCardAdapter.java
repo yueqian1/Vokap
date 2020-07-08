@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.wordlistapp.include.FontManager;
 import com.example.wordlistapp.include.WordList;
 import com.example.wordlistapp.include.WordResources;
 
@@ -30,7 +31,7 @@ public class WordCardAdapter extends RecyclerView.Adapter<WordCardAdapter.WordCa
         WordList wordList = WordResources.getWordList(position);
 
         holder.progressBar.setMax(wordList.size());
-        holder.progressBar.setProgress((int) (Math.random() * wordList.size()));
+        holder.progressBar.setProgress(wordList.getLearnedProgress());
         holder.textView.setText(wordList.getListName());
         holder.setWordListIndex(position);
     }
@@ -39,7 +40,8 @@ public class WordCardAdapter extends RecyclerView.Adapter<WordCardAdapter.WordCa
 
         private ProgressBar progressBar;
         private TextView textView;
-        private CardView cardView;
+        private CardView cardBackground;
+        private CardView cardForeground;
         private int wordListIndex;
 
         public void setWordListIndex(int index) {
@@ -51,9 +53,10 @@ public class WordCardAdapter extends RecyclerView.Adapter<WordCardAdapter.WordCa
 
             progressBar = itemView.findViewById(R.id.pbWordCard);
             textView = itemView.findViewById(R.id.tvWordCard);
-            cardView = itemView.findViewById(R.id.cvWordCard);
+            cardBackground = itemView.findViewById(R.id.cvWordCard);
+            cardForeground = itemView.findViewById(R.id.cvWordCardFore);
 
-            cardView.setOnClickListener(new View.OnClickListener() {
+            cardForeground.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Context upContent = itemView.getContext();
@@ -64,6 +67,9 @@ public class WordCardAdapter extends RecyclerView.Adapter<WordCardAdapter.WordCa
                     upContent.startActivity(intent);
                 }
             });
+
+            textView.setTypeface(FontManager.getTypeface(FontManager.PRODUCT_SANS_R));
+            cardBackground.setCardElevation(5.0f);
         }
 
     }

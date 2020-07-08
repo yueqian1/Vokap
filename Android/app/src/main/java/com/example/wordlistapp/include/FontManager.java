@@ -3,6 +3,9 @@ package com.example.wordlistapp.include;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.TypefaceSpan;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,6 +30,12 @@ public class FontManager {
 
     public static Typeface getTypeface(String font) {
         return fontMap.get(font);
+    }
+
+    public static SpannableString getTitleSpannable(String title, Typeface tf) {
+        SpannableString string = new SpannableString(title);
+        string.setSpan(new TestTypefaceSpan(tf), 0, title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        return string;
     }
 
 }

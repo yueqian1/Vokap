@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/tvWordTestTitle"
+        android:id="@+id/tvTestTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="208dp"
@@ -28,18 +28,46 @@
         android:progressTint="@color/design_default_color_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvWordTestTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTestTitle" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vpWordTest"
-        android:layout_width="393dp"
-        android:layout_height="484dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="412dp"
+        android:layout_height="224dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pbWordTest"
-        app:layout_constraintVertical_bias="0.46">
+        app:layout_constraintTop_toBottomOf="@+id/pbWordTest">
 
     </androidx.viewpager2.widget.ViewPager2>
+
+    <TextView
+        android:id="@+id/tvTestResult"
+        android:layout_width="248dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnNextTest"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnNextTest"
+        style="@android:style/Widget.Material.Button"
+        android:layout_width="100dp"
+        android:layout_height="53dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="116dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="next"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
