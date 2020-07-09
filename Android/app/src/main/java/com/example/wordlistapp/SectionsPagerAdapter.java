@@ -8,6 +8,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.example.wordlistapp.notebook.NotebookFragment;
+import com.example.wordlistapp.schedule.ScheduleFragment;
+import com.example.wordlistapp.settings.SettingsFragment;
+import com.example.wordlistapp.wordtest.WordCardFragment;
+
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
@@ -34,7 +39,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return new WordCardFragment();
             case 1:
-                return new NewWordFragment();
+                return new NotebookFragment();
             case 2:
                 return new ScheduleFragment();
             case 3:

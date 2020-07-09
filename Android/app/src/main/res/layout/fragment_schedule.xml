@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="370dp"
+        android:layout_height="535dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/colorAccent"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="2dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardBackgroundColor="@color/wordCardBackground"
+                app:cardCornerRadius="10dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <CalendarView
+                        android:id="@+id/calendarView"
+                        android:layout_width="0dp"
+                        android:layout_height="322dp"
+                        android:layout_marginTop="40dp"
+                        android:background="@color/wordCardBackground"
+                        android:focusedMonthDateColor="#F0F0F0"
+                        android:forceDarkAllowed="false"
+                        android:selectedWeekBackgroundColor="@color/colorPrimary"
+                        android:shownWeekCount="4"
+                        android:unfocusedMonthDateColor="@color/design_default_color_on_primary"
+                        android:weekSeparatorLineColor="@color/colorPrimaryDark"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.06" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="327dp"
+                        android:layout_height="106dp"
+                        android:layout_marginBottom="20dp"
+                        app:cardCornerRadius="12dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <TextView
+                            android:id="@+id/tvSchedule"
+                            android:layout_width="340dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/cardTextBg"
+                            android:gravity="center"
+                            android:text="No schedule ~"
+                            android:textColor="@color/weaker_background"
+                            android:textSize="24sp" />
+                    </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="370dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/colorPrimaryDark"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="2dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="8dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/txSchedule"
+                        android:layout_width="270dp"
+                        android:layout_height="56dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="Write your schedule here"
+                        android:inputType="textPersonName"
+                        android:textAlignment="center"
+                        android:textColor="#323232"
+                        android:textColorHighlight="@color/colorPrimary"
+                        android:textColorHint="#B6B6B6"
+                        android:textColorLink="@color/cardTextBg"
+                        android:textCursorDrawable="@color/cardTextBg"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/btnAddSchedule"
+                        android:layout_width="60dp"
+                        android:layout_height="45dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/ripple_bg"
+                        android:backgroundTint="#511CC8"
+                        android:foreground="@drawable/ripple_bg"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="2dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginVertical="8dp"
+                            android:layout_marginHorizontal="16dp"
+                            android:background="@drawable/ic_baseline_check_24">
+
+                        </FrameLayout>
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,9 +6,10 @@
     android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="342dp"
+        android:layout_width="343dp"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="8dp"
+        android:backgroundTint="@color/wordCardBackground"
+        app:cardCornerRadius="9dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,67 +19,82 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:padding="2dp">
 
-            <Button
-                android:id="@+id/btnWordTestChoice1"
-                style="@style/Widget.AppCompat.Button.Borderless"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/wordtest_choice_margin"
-                android:background="@color/wordTestChoiceDefault"
-                android:fontFamily="sans-serif-light"
-                android:foreground="@drawable/ripple_bg"
-                android:text="Button"
-                android:textAllCaps="false"
-                android:textColor="@color/wordTestChoiceTextColor"
-                android:textSize="@dimen/wordtest_choice_textSize" />
+                android:padding="4dp"
+                app:cardCornerRadius="8dp">
 
-            <Button
-                android:id="@+id/btnWordTestChoice2"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/wordtest_choice_margin"
-                android:background="@color/wordTestChoiceIncorrect"
-                android:textColor="@color/wordTestChoiceTextColor"
-                android:fontFamily="sans-serif-light"
-                android:foreground="@drawable/ripple_bg"
-                android:text="Button"
-                android:textAllCaps="false"
-                android:textSize="@dimen/wordtest_choice_textSize" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.494"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-            <Button
-                android:id="@+id/btnWordTestChoice3"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/wordtest_choice_margin"
-                android:background="@color/wordTestChoiceDefault"
-                android:textColor="@color/wordTestChoiceTextColor"
-                android:fontFamily="sans-serif-light"
-                android:foreground="@drawable/ripple_bg"
-                android:text="Button"
-                android:textAllCaps="false"
-                android:textSize="@dimen/wordtest_choice_textSize" />
+                    <Button
+                        android:id="@+id/btnWordTestChoice1"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/wordtest_choice_margin"
+                        android:background="@color/wordTestChoiceDefault"
+                        android:fontFamily="sans-serif-light"
+                        android:foreground="@drawable/ripple_bg"
+                        android:text="Button"
+                        android:textAllCaps="false"
+                        android:textColor="@color/wordTestChoiceTextColor"
+                        android:textSize="@dimen/wordtest_choice_textSize" />
 
-            <Button
-                android:id="@+id/btnWordTestChoice4"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/wordtest_choice_margin"
-                android:background="@color/wordTestChoiceCorrect"
-                android:textColor="@color/wordTestChoiceTextColor"
-                android:fontFamily="sans-serif-light"
-                android:foreground="@drawable/ripple_bg"
-                android:text="Button"
-                android:textAllCaps="false"
-                android:textSize="@dimen/wordtest_choice_textSize" />
+                    <Button
+                        android:id="@+id/btnWordTestChoice2"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/wordtest_choice_margin"
+                        android:background="@color/wordTestChoiceIncorrect"
+                        android:fontFamily="sans-serif-light"
+                        android:foreground="@drawable/ripple_bg"
+                        android:text="Button"
+                        android:textAllCaps="false"
+                        android:textColor="@color/wordTestChoiceTextColor"
+                        android:textSize="@dimen/wordtest_choice_textSize" />
+
+                    <Button
+                        android:id="@+id/btnWordTestChoice3"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/wordtest_choice_margin"
+                        android:background="@color/wordTestChoiceDefault"
+                        android:fontFamily="sans-serif-light"
+                        android:foreground="@drawable/ripple_bg"
+                        android:text="Button"
+                        android:textAllCaps="false"
+                        android:textColor="@color/wordTestChoiceTextColor"
+                        android:textSize="@dimen/wordtest_choice_textSize" />
+
+                    <Button
+                        android:id="@+id/btnWordTestChoice4"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/wordtest_choice_margin"
+                        android:background="@color/wordTestChoiceCorrect"
+                        android:fontFamily="sans-serif-light"
+                        android:foreground="@drawable/ripple_bg"
+                        android:text="Button"
+                        android:textAllCaps="false"
+                        android:textColor="@color/wordTestChoiceTextColor"
+                        android:textSize="@dimen/wordtest_choice_textSize" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

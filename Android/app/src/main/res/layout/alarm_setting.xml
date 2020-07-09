@@ -1,0 +1,53 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="293dp"
+        android:layout_height="222dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/RingOne_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="闹铃（一次）" />
+
+            <Button
+                android:id="@+id/RingCycle_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="闹铃（周期）" />
+
+            <Button
+                android:id="@+id/CancleRingCycle_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="取消周期" />
+
+            <Button
+                android:id="@+id/SendNofication_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="发送广播" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="返回" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

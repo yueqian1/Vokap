@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="336dp"
+        android:layout_height="487dp"
+        app:cardBackgroundColor="@color/colorPrimaryDark"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="10dp"
+                android:layout_margin="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/notebool_edit_word"
+                        android:layout_width="match_parent"
+                        android:layout_height="58dp"
+                        android:hint="请输入单词"
+                        android:paddingLeft="4dp"
+                        android:textColor="#E3633A"
+                        android:textSize="20dp" />
+
+                    <EditText
+                        android:id="@+id/notebook_edit_meaning"
+                        android:layout_width="match_parent"
+                        android:layout_height="58dp"
+                        android:hint="请输入义项"
+                        android:paddingLeft="4dp"
+                        android:textColor="#E3633A"
+                        android:textSize="20dp" />
+
+                    <EditText
+                        android:id="@+id/notebook_edit_example"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="请输入用法或例句"
+                        android:inputType="textMultiLine"
+                        android:minLines="6"
+                        android:paddingLeft="4dp"
+                        android:shadowColor="#209B90"
+                        android:textColor="#E3633A"
+                        android:textSize="20dp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/notebook_btn_save"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="48dp"
+        android:clickable="true"
+        android:src="@drawable/ic_baseline_check_24"
+        app:backgroundTint="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

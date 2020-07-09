@@ -2,6 +2,17 @@
     <string name="app_name">Vokap</string>
     <string name="tab_text_wordcards">单词清单</string>
     <string name="tab_text_newwords">生词本</string>
-    <string name="tab_text_myplan">我的计划</string>
-    <string name="tab_text_options">个人信息</string>
+    <string name="tab_text_myplan">计划提醒</string>
+    <string name="tab_text_options">设置</string>
+
+    <string name="title">Vokap-生词本</string>
+    <string name="notebook_btn_confirm">确定</string>
+    <string name="notebook_btn_cancel">取消</string>
+    <string name="notebook_btn_add">添加</string>
+    <string name="notebook_btn_save">保存</string>
+    <string name="notebook_btn_return">返回</string>
+    <string name="notebook_save_success">保存成功！</string>
+    <string name="notebook_save_fail">保存失败！单词或汉语释义不能为空！</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

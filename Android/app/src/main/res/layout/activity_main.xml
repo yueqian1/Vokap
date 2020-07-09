@@ -14,7 +14,7 @@
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="72dp"
             android:gravity="center"
             android:minHeight="?actionBarSize"
@@ -48,6 +48,6 @@
         android:layout_margin="@dimen/fab_margin"
         android:backgroundTint="@color/colorPrimaryDark"
         app:backgroundTint="@color/colorPrimary"
-        app:srcCompat="@drawable/ic_baseline_chevron_right_24" />
+        app:srcCompat="@drawable/ic_baseline_dehaze_24" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

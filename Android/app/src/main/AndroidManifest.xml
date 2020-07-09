@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.wordlistapp">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -11,9 +12,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/AppTheme.NoActionBar">
+
         <activity
             android:name=".MainActivity"
+            android:windowSoftInputMode="stateVisible|adjustPan"
+            android:transcriptMode="normal"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -22,13 +28,21 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".WordListingActivity">
-        </activity>
+        <receiver android:name=".schedule.RingReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.wordlistapp.schedule.RingReceiver" />
+            </intent-filter>
+        </receiver>
 
-        <activity
-            android:name=".WordTestActivity">
-        </activity>
+        <activity android:name=".wordtest.WordListingActivity" />
+        <activity android:name=".wordtest.WordTestActivity" />
+        <activity android:name=".notebook.NotebookEditActivity" />
+        <activity android:name=".schedule.RingActivity" />
+        <activity android:name=".schedule.ScheduleInputActivity" />
+        <activity android:name=".settings.LoginActivity" />
+        <activity android:name=".web.WebActivity" />
 
     </application>
 
